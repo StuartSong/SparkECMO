@@ -1,0 +1,13 @@
+#!/bin/bash -l
+#SBATCH --job-name=q_learning
+#SBATCH --nodes=1
+#SBATCH --ntasks=30
+#SBATCH --mem=128G
+#SBATCH --time=8-00:00:00
+#SBATCH -p batch
+#SBATCH --output=Clusters-%A.out
+#SBATCH --error=Clusters-%A.err
+#SBATCH --mail-type=BEGIN,END,FAIL          # Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=json336@emory.edu     # Where to send mail
+
+python q_learning_script.py
