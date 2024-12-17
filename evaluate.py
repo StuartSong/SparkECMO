@@ -70,10 +70,10 @@ def process_data(args):
     observations = df[observations_columns].values
     actions = df[actions_columns].values
     rewards = df[rewards_column].values
-
+    global low, high
     if args.is_continuous:
-        low = np.min(actions, axis=0)
-        high = np.max(actions, axis=0)
+        low = np.array([0, 5, 0.21, 0.5, 0.25])
+        high = np.array([40, 20, 1, 10, 20])
 
         # Normalize actions to range [-1, 1]
         normalized_actions = 2 * (actions - low) / (high - low) - 1
@@ -114,7 +114,7 @@ def main(args):
     # load pretrained policy
 
     if args.algorithm == 'cql' and args.is_continuous:
-        model_dir = "d3rlpy_logs/" + args.model_dir + "/"
+        model_dir = "./" + args.model_dir + "/"
         model_template = "model_{}.d3"
         model_steps = range(10000, 100001, 10000) 
 
@@ -136,6 +136,7 @@ def main(args):
                     "init_value": d3rlpy.metrics.InitialStateValueEstimationEvaluator(),
                     "soft_opc": d3rlpy.metrics.SoftOPCEvaluator(-10),
                 },
+                experiment_name="cql_ope_" + model_dir
             )
             _, last_metrics = scores[-1]
             init_value = last_metrics.get("init_value", None)

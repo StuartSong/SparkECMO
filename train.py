@@ -2,6 +2,7 @@ import d3rlpy
 import pandas as pd
 import numpy as np
 import argparse
+import yaml
 
 
 
@@ -102,6 +103,13 @@ def process_data(args):
 
 
 def main(args):
+    with open(args.config, "r") as f:
+        config = yaml.safe_load(f)
+    
+    for key, value in config.items():
+        setattr(args, key, value)
+    
+    
 
     data_dict = process_data(args)
     dataset = d3rlpy.datasets.MDPDataset(
@@ -112,36 +120,67 @@ def main(args):
     )
 
     if args.algorithm == 'cql' and args.is_continuous:
-        cql = d3rlpy.algos.CQLConfig().create(device='cuda:0')
+        cql = d3rlpy.algos.CQLConfig(
+            batch_size=args.batch_size, 
+            gamma=args.gamma, 
+            actor_learning_rate=args.actor_learning_rate,
+            critic_learning_rate=args.critic_learning_rate,
+            temp_learning_rate=args.temp_learning_rate,
+            alpha_learning_rate=args.alpha_learning_rate,
+            tau=args.tau,
+            initial_temperature=args.initial_temperature,
+            initial_alpha=args.initial_alpha,
+            alpha_threshold=args.alpha_threshold,
+            conservative_weight=args.conservative_weight,
+            ).create(device='cuda:0')
         # Training configuration
         cql.fit(
             dataset=dataset,
             n_steps=100000,
-            experiment_name="cql_training" + args.data_type
+            experiment_name="cql_training_" + args.data_type + args.config
         )
     elif args.algorithm == 'cql' and not args.is_continuous:
-        cql = d3rlpy.algos.DiscreteCQLConfig().create(device='cuda:0')
+        cql = d3rlpy.algos.DiscreteCQLConfig(
+            batch_size=args.batch_size,
+            gamma=args.gamma,
+            learning_rate=args.learning_rate,
+            alpha=args.alpha,
+        ).create(device='cuda:0')
         # Training configuration
         cql.fit(
             dataset=dataset,
             n_steps=100000,
             n_steps_per_epoch=1000,
-            experiment_name="cql_training" + args.data_type
+            experiment_name="cql_training_" + args.data_type
         )
     elif args.algorithm == 'bcq' and args.is_continuous:
-        bcq = d3rlpy.algos.BCQConfig().create(device='cuda:0')
+        bcq = d3rlpy.algos.BCQConfig(
+            batch_size=args.batch_size,
+            gamma=args.gamma,
+            actor_learning_rate=args.actor_learning_rate,
+            critic_learning_rate=args.critic_learning_rate,
+            imitator_learning_rate=args.imitator_learning_rate,
+            beta=args.beta,
+            action_flexibility=args.action_flexibility,
+        ).create(device='cuda:0')
         # Training configuration
         bcq.fit(
             dataset=dataset,
             n_steps=100000,
-            experiment_name="bcq_training" + args.data_type)
+            experiment_name="bcq_training_" + args.data_type)
     elif args.algorithm == 'bcq' and not args.is_continuous:
-        bcq = d3rlpy.algos.DiscreteBCQConfig().create(device='cuda:0')
+        bcq = d3rlpy.algos.DiscreteBCQConfig(
+            batch_size=args.batch_size,
+            gamma=args.gamma,
+            learning_rate=args.learning_rate,
+            beta=args.beta,
+            action_flexibility=args.action_flexibility,
+        ).create(device='cuda:0')
         # Training configuration
         bcq.fit(
             dataset=dataset,
             n_steps=100000,
-            experiment_name="bcq_training" + args.data_type
+            experiment_name="bcq_training_" + args.data_type
         )
 
 
@@ -151,5 +190,6 @@ if __name__ == '__main__':
     parser.add_argument('--data_path', type=str, default='./Continuous Data/train_data_continuous_no_R_for_Survival.csv')
     parser.add_argument('--is_continuous', type=bool, default=True)
     parser.add_argument('--algorithm', type=str, default='cql')
+    parser.add_argument('--config', type=str, default='default')
     args = parser.parse_args()
     main(args)

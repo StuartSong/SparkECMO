@@ -71,8 +71,8 @@ def process_data(args):
     rewards = df[rewards_column].values
     global low, high
     if args.is_continuous:
-        low = np.min(actions, axis=0)
-        high = np.max(actions, axis=0)
+        low = np.array([0, 5, 0.21, 0.5, 0.25])
+        high = np.array([40, 20, 1, 10, 20])
 
         # Normalize actions to range [-1, 1]
         normalized_actions = 2 * (actions - low) / (high - low) - 1
@@ -111,11 +111,13 @@ def main(args):
     )
 
     if args.algorithm == 'cql' and args.is_continuous:
+        print('start inference')
         cql = d3rlpy.load_learnable(args.model_path)
         # Training configuration
         action = cql.predict(data_dict["observations"])
         action = (action + 1) / 2 * (high - low) + low
-        pd.DataFrame(action, columns=['vent_rate_set', 'peep', 'fio2', 'flow', 'sweep']).to_csv(args.data_type+'cql_restored_actions.csv', index=False)
+        pd.DataFrame(action, columns=['vent_rate_set', 'peep', 'fio2', 'flow', 'sweep']).to_csv(args.data_type+'_cql_restored_actions.csv', index=False)
+
     elif args.algorithm == 'cql' and not args.is_continuous:
         cql = d3rlpy.load_learnable(args.model_path)
         # Training configuration
