@@ -1,0 +1,14 @@
+,,Overall
+n,,214
+"age, mean (SD)",,45.2 (13.7)
+"daily_weight_kg, mean (SD)",,106.2 (36.5)
+"LOS_days, mean (SD)",,22.9 (24.5)
+"SOFA_renal, mean (SD)",,0.8 (0.9)
+"SOFA_cardio, mean (SD)",,2.0 (1.5)
+"SOFA_resp, mean (SD)",,2.1 (0.9)
+"gender, n (%)",Female,92 (43.0)
+"gender, n (%)",Male,122 (57.0)
+"race, n (%)",African American  or Black,83 (38.8)
+"race, n (%)",Asian,7 (3.3)
+"race, n (%)",Caucasian or White,80 (37.4)
+"race, n (%)","Unknown, Unavailable or Unreported",44 (20.6)
