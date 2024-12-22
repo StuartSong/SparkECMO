@@ -48,7 +48,6 @@ def decode_discrete_action(indices, ranges):
 
 
 
-
 def process_data(args):
     df = pd.read_csv(args.data_path)
     data_dict = {}
@@ -120,6 +119,7 @@ def main(args):
     )
 
     if args.algorithm == 'cql' and args.is_continuous:
+        print('Continuous CQL')
         cql = d3rlpy.algos.CQLConfig(
             batch_size=args.batch_size, 
             gamma=args.gamma, 
@@ -140,6 +140,7 @@ def main(args):
             experiment_name="cql_training_" + args.data_type + args.config
         )
     elif args.algorithm == 'cql' and not args.is_continuous:
+        print('Discrete CQL')
         cql = d3rlpy.algos.DiscreteCQLConfig(
             batch_size=args.batch_size,
             gamma=args.gamma,
@@ -151,7 +152,7 @@ def main(args):
             dataset=dataset,
             n_steps=100000,
             n_steps_per_epoch=1000,
-            experiment_name="cql_training_" + args.data_type
+            experiment_name="cql_training_" + args.data_type + args.config
         )
     elif args.algorithm == 'bcq' and args.is_continuous:
         bcq = d3rlpy.algos.BCQConfig(
@@ -161,13 +162,15 @@ def main(args):
             critic_learning_rate=args.critic_learning_rate,
             imitator_learning_rate=args.imitator_learning_rate,
             beta=args.beta,
+            tau=args.tau,
+            lam=args.lam,
             action_flexibility=args.action_flexibility,
         ).create(device='cuda:0')
         # Training configuration
         bcq.fit(
             dataset=dataset,
             n_steps=100000,
-            experiment_name="bcq_training_" + args.data_type)
+            experiment_name="bcq_training_" + args.data_type + args.config)
     elif args.algorithm == 'bcq' and not args.is_continuous:
         bcq = d3rlpy.algos.DiscreteBCQConfig(
             batch_size=args.batch_size,
@@ -180,7 +183,7 @@ def main(args):
         bcq.fit(
             dataset=dataset,
             n_steps=100000,
-            experiment_name="bcq_training_" + args.data_type
+            experiment_name="bcq_training_" + args.data_type + args.config
         )
 
 
@@ -188,8 +191,9 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--data_type', type=str, default='continuous_no_R')
     parser.add_argument('--data_path', type=str, default='./Continuous Data/train_data_continuous_no_R_for_Survival.csv')
-    parser.add_argument('--is_continuous', type=bool, default=True)
+    parser.add_argument('--is_continuous', action='store_true', default=False)
     parser.add_argument('--algorithm', type=str, default='cql')
-    parser.add_argument('--config', type=str, default='default')
+    parser.add_argument('--config', type=str, default='')
     args = parser.parse_args()
+    print(args)
     main(args)

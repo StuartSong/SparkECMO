@@ -1,0 +1,1 @@
+{action_flexibility: 0.1, batch_size: 32, beta: 1.0, gamma: 1.0, learning_rate: 0.00625}

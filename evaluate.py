@@ -136,7 +136,7 @@ def main(args):
                     "init_value": d3rlpy.metrics.InitialStateValueEstimationEvaluator(),
                     "soft_opc": d3rlpy.metrics.SoftOPCEvaluator(-10),
                 },
-                experiment_name="cql_ope_" + model_dir
+                experiment_name="fqe_" + model_dir
             )
             _, last_metrics = scores[-1]
             init_value = last_metrics.get("init_value", None)
@@ -152,7 +152,7 @@ def main(args):
             else:
                 print("No valid init_value found during evaluation.")
     elif args.algorithm == 'cql' and not args.is_continuous:
-        model_dir = "d3rlpy_logs/" + args.model_dir + "/"
+        model_dir = "./" + args.model_dir + "/"
         model_template = "model_{}.d3"
         model_steps = range(10000, 100001, 10000) 
 
@@ -174,6 +174,7 @@ def main(args):
                     "init_value": d3rlpy.metrics.InitialStateValueEstimationEvaluator(),
                     "soft_opc": d3rlpy.metrics.SoftOPCEvaluator(-10),
                 },
+                experiment_name="fqe_" + model_dir
             )
             _, last_metrics = scores[-1]
             init_value = last_metrics.get("init_value", None)
@@ -189,7 +190,7 @@ def main(args):
             else:
                 print("No valid init_value found during evaluation.")
     elif args.algorithm == 'bcq' and args.is_continuous:
-        model_dir = "d3rlpy_logs/" + args.model_dir + "/"
+        model_dir = "./" + args.model_dir + "/"
         model_template = "model_{}.d3"
         model_steps = range(10000, 100001, 10000) 
 
@@ -211,6 +212,7 @@ def main(args):
                     "init_value": d3rlpy.metrics.InitialStateValueEstimationEvaluator(),
                     "soft_opc": d3rlpy.metrics.SoftOPCEvaluator(-10),
                 },
+                experiment_name="fqe_" + model_dir
             )
             _, last_metrics = scores[-1]
             init_value = last_metrics.get("init_value", None)
@@ -226,7 +228,7 @@ def main(args):
             else:
                 print("No valid init_value found during evaluation.")
     elif args.algorithm == 'bcq' and not args.is_continuous:
-        model_dir = "d3rlpy_logs/" + args.model_dir + "/"
+        model_dir = "./" + args.model_dir + "/"
         model_template = "model_{}.d3"
         model_steps = range(10000, 100001, 10000) 
 
@@ -248,6 +250,7 @@ def main(args):
                     "init_value": d3rlpy.metrics.InitialStateValueEstimationEvaluator(),
                     "soft_opc": d3rlpy.metrics.SoftOPCEvaluator(-10),
                 },
+                experiment_name="fqe_" + model_dir
             )
             _, last_metrics = scores[-1]
             init_value = last_metrics.get("init_value", None)
@@ -265,9 +268,9 @@ def main(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--model_dir', type=str, default='cql_trainingdiscrete_no_R_20241125215736', help='Path to data file')
-    parser.add_argument('--data_path', type=str, default='./Discrete Data/train_data_discrete_no_R_for_Survival.csv', help='Path to data file')
+    parser.add_argument('--model_dir', type=str, default='', help='Path to data file')
+    parser.add_argument('--data_path', type=str, default='./Discrete Data/val_data_discrete_no_R_for_Survival.csv', help='Path to data file')
     parser.add_argument('--algorithm', type=str, default='cql', help='Algorithm to use')
-    parser.add_argument('--is_continuous', type=bool, default=True, help='Continuous or discrete action space')
+    parser.add_argument('--is_continuous', action='store_true', default=False)
     args = parser.parse_args()
     main(args)

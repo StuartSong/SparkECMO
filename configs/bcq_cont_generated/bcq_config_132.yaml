@@ -1,0 +1,3 @@
+{action_flexibility: 0.1, actor_learning_rate: 1.0e-05, batch_size: 256, beta: 0.5,
+  critic_learning_rate: 1.0e-05, gamma: 1.0, imitator_learning_rate: 0.001, lam: 0.75,
+  tau: 0.005}

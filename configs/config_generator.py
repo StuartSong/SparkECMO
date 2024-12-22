@@ -58,7 +58,7 @@ def save_configs(configs, output_dir):
     Path(output_dir).mkdir(parents=True, exist_ok=True)
     
     for i, config in enumerate(configs):
-        file_name = f"cql_config_{i}.yaml"
+        file_name = f"bcq_config_{i}.yaml"
         file_path = os.path.join(output_dir, file_name)
         
         with open(file_path, 'w') as file:
@@ -67,9 +67,9 @@ def save_configs(configs, output_dir):
 
 def main():
     # Path to the initial config file
-    input_config_path = "./cql_config.yaml"
+    input_config_path = "./bcq_cont_config.yaml"
     # Directory to save generated configs
-    output_config_dir = "./generated"
+    output_config_dir = "./bcq_cont_generated"
     
     # Load initial config
     config = load_yaml_config(input_config_path)
