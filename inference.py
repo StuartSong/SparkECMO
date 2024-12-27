@@ -114,8 +114,10 @@ def main(args):
         print('start inference')
         cql = d3rlpy.load_learnable(args.model_path)
         # Training configuration
+        print(data_dict["observations"])
         action = cql.predict(data_dict["observations"])
         action = (action + 1) / 2 * (high - low) + low
+        print(action)
         pd.DataFrame(action, columns=['vent_rate_set', 'peep', 'fio2', 'flow', 'sweep']).to_csv(args.data_type+'_cql_restored_actions.csv', index=False)
 
     elif args.algorithm == 'cql' and not args.is_continuous:
@@ -123,19 +125,21 @@ def main(args):
         # Training configuration
         action = cql.predict(data_dict["observations"])
         action = decode_discrete_action(action, [4, 5, 4, 5, 5])
-        pd.DataFrame(action, columns=['vent_rate_set', 'peep', 'fio2', 'flow', 'sweep']).to_csv(args.data_type+'cql_restored_actions.csv', index=False)
+        pd.DataFrame(action, columns=['vent_rate_set', 'peep', 'fio2', 'flow', 'sweep']).to_csv(args.data_type+'_cql_restored_actions.csv', index=False)
     elif args.algorithm == 'bcq' and args.is_continuous:
         bcq = d3rlpy.load_learnable(args.model_path)
         # Training configuration
         action = bcq.predict(data_dict["observations"])
         action = (action + 1) / 2 * (high - low) + low
-        pd.DataFrame(action, columns=['vent_rate_set', 'peep', 'fio2', 'flow', 'sweep']).to_csv(args.data_type+'bcq_restored_actions.csv', index=False)
+        pd.DataFrame(action, columns=['vent_rate_set', 'peep', 'fio2', 'flow', 'sweep']).to_csv(args.data_type+'_bcq_restored_actions.csv', index=False)
     elif args.algorithm == 'bcq' and not args.is_continuous:
         bcq = d3rlpy.load_learnable(args.model_path)
         # Training configuration
         action = bcq.predict(data_dict["observations"])
+        print(action.shape)
+        print(action)   
         action = decode_discrete_action(action, [4, 5, 4, 5, 5])
-        pd.DataFrame(action, columns=['vent_rate_set', 'peep', 'fio2', 'flow', 'sweep']).to_csv(args.data_type+'bcq_restored_actions.csv', index=False)
+        pd.DataFrame(action, columns=['vent_rate_set', 'peep', 'fio2', 'flow', 'sweep']).to_csv(args.data_type+'_bcq_restored_actions.csv', index=False)
     
 
 
@@ -144,7 +148,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--data_type', type=str, default='continuous_no_R')
     parser.add_argument('--data_path', type=str, default='./Continuous Data/train_data_continuous_no_R_for_Survival.csv')
-    parser.add_argument('--model_path', type=str, default='')
+    parser.add_argument('--model_path', type=str, default='/work/yy408/SparkECMO/d3rlpy_logs/cql_training_continuous_no_R./configs/cql_cont_generated/cql_config_175.yaml_20241222042053/model_80000.d3')
     parser.add_argument('--is_continuous', type=bool, default=True)
     parser.add_argument('--algorithm', type=str, default='cql')
     args = parser.parse_args()

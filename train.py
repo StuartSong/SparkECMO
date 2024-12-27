@@ -111,12 +111,22 @@ def main(args):
     
 
     data_dict = process_data(args)
-    dataset = d3rlpy.datasets.MDPDataset(
-        observations = data_dict["observations"],
-        actions = data_dict["actions"],
-        rewards =  data_dict["rewards"],
-        terminals = data_dict["terminals"],
-    )
+    if args.is_continuous:
+        dataset = d3rlpy.datasets.MDPDataset(
+            observations = data_dict["observations"],
+            actions = data_dict["actions"],
+            rewards =  data_dict["rewards"],
+            terminals = data_dict["terminals"],
+        )
+    else:
+        print('action_size=2000')
+        dataset = d3rlpy.datasets.MDPDataset(
+            observations = data_dict["observations"],
+            actions = data_dict["actions"],
+            rewards =  data_dict["rewards"],
+            terminals = data_dict["terminals"],
+            action_size=2000
+        )
 
     if args.algorithm == 'cql' and args.is_continuous:
         print('Continuous CQL')
@@ -183,6 +193,7 @@ def main(args):
         bcq.fit(
             dataset=dataset,
             n_steps=100000,
+            n_steps_per_epoch=1000,
             experiment_name="bcq_training_" + args.data_type + args.config
         )
 

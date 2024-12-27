@@ -11,7 +11,7 @@ conda activate d3rlpy
 
 
 # Dynamically gather all model directories
-model_base_dir="d3rlpy_logs/cql_training_discrete_Pos./configs/cql_disc_generated"
+model_base_dir="d3rlpy_logs/bcq_training_discrete_Pos./configs/bcq_disc_generated"
 model_dirs=($(find "$model_base_dir" -mindepth 1 -maxdepth 1 -type d))
 
 # Ensure that SLURM_ARRAY_TASK_ID doesn't exceed the number of directories
@@ -24,4 +24,4 @@ fi
 model_dir=${model_dirs[$SLURM_ARRAY_TASK_ID]}
 
 # Run the corresponding task
-python evaluate.py --model_dir "$model_dir" --data_path "./Discrete Data/val_data_discrete_Pos_for_Survival.csv" --algorithm "cql"
+python evaluate.py --model_dir "$model_dir" --data_path "./Discrete Data/val_data_discrete_Pos_for_Survival.csv" --algorithm "bcq"

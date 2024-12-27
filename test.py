@@ -3,6 +3,10 @@ import pandas as pd
 import numpy as np
 import argparse
 
+from AveraePatientEvaluater import AveragePatientEvaluator
+
+
+
 
 
 
@@ -101,6 +105,7 @@ def process_data(args):
 
 
 def main(args):
+
     if args.is_continuous:
         data_dict = process_data(args)
         dataset = d3rlpy.datasets.MDPDataset(
@@ -119,6 +124,8 @@ def main(args):
             action_size = 2000
         )
 
+
+    # load pretrained policy
 
     if args.algorithm == 'cql' and args.is_continuous:
         model_dir = "./" + args.model_dir + "/"
@@ -142,8 +149,10 @@ def main(args):
                 evaluators={
                     "init_value": d3rlpy.metrics.InitialStateValueEstimationEvaluator(),
                     "soft_opc": d3rlpy.metrics.SoftOPCEvaluator(-10),
+                    "average_value": d3rlpy.metrics.AverageValueEstimationEvaluator(),
+                    "average_patient": AveragePatientEvaluator(),
                 },
-                experiment_name="fqe_" + model_dir
+                experiment_name="fqe_test_" + model_dir
             )
             _, last_metrics = scores[-1]
             init_value = last_metrics.get("init_value", None)
@@ -180,8 +189,10 @@ def main(args):
                 evaluators={
                     "init_value": d3rlpy.metrics.InitialStateValueEstimationEvaluator(),
                     "soft_opc": d3rlpy.metrics.SoftOPCEvaluator(-10),
+                    "average_value": d3rlpy.metrics.AverageValueEstimationEvaluator(),
+                    "average_patient": AveragePatientEvaluator(),
                 },
-                experiment_name="fqe_" + model_dir
+                experiment_name="fqe_test_" + model_dir
             )
             _, last_metrics = scores[-1]
             init_value = last_metrics.get("init_value", None)
@@ -218,8 +229,10 @@ def main(args):
                 evaluators={
                     "init_value": d3rlpy.metrics.InitialStateValueEstimationEvaluator(),
                     "soft_opc": d3rlpy.metrics.SoftOPCEvaluator(-0.2),
+                    "average_value": d3rlpy.metrics.AverageValueEstimationEvaluator(),
+                    "average_patient": AveragePatientEvaluator(),
                 },
-                experiment_name="fqe_" + model_dir
+                experiment_name="fqe_test_" + model_dir
             )
             _, last_metrics = scores[-1]
             init_value = last_metrics.get("init_value", None)
@@ -256,8 +269,10 @@ def main(args):
                 evaluators={
                     "init_value": d3rlpy.metrics.InitialStateValueEstimationEvaluator(),
                     "soft_opc": d3rlpy.metrics.SoftOPCEvaluator(-10),
+                    "average_value": d3rlpy.metrics.AverageValueEstimationEvaluator(),
+                    "average_patient": AveragePatientEvaluator(),
                 },
-                experiment_name="fqe_" + model_dir
+                experiment_name="fqe_test_" + model_dir
             )
             _, last_metrics = scores[-1]
             init_value = last_metrics.get("init_value", None)

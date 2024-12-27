@@ -1,0 +1,11 @@
+Index,Init Value,Loss,Path
+400,0.2813418209552765,0.2098342826962471,./d3rlpy_logs/fqe_./d3rlpy_logs/cql_training_continuous_Pos./configs/cql_cont_generated/cql_config_195.yaml_20241222124035/_20241223110300
+300,0.2355906963348388,0.2063415041565895,./d3rlpy_logs/fqe_./d3rlpy_logs/cql_training_continuous_Pos./configs/cql_cont_generated/cql_config_195.yaml_20241222124035/_20241223110300
+400,0.223635047674179,0.216863232254982,./d3rlpy_logs/fqe_./d3rlpy_logs/cql_training_continuous_Pos./configs/cql_cont_generated/cql_config_3.yaml_20241222090222/_20241223110501
+300,0.1063654869794845,0.2120489762723446,./d3rlpy_logs/fqe_./d3rlpy_logs/cql_training_continuous_Pos./configs/cql_cont_generated/cql_config_3.yaml_20241222090222/_20241223110501
+300,0.0174683202058076,0.2195262008160352,./d3rlpy_logs/fqe_./d3rlpy_logs/cql_training_continuous_Pos./configs/cql_cont_generated/cql_config_122.yaml_20241222112222/_20241223110854
+300,0.0009293009643442,0.2172844733297824,./d3rlpy_logs/fqe_./d3rlpy_logs/cql_training_continuous_Pos./configs/cql_cont_generated/cql_config_290.yaml_20241222140859/_20241223110425
+300,-0.0066154422238469,0.2150665378570556,./d3rlpy_logs/fqe_./d3rlpy_logs/cql_training_continuous_Pos./configs/cql_cont_generated/cql_config_203.yaml_20241222124813/_20241223110312
+400,-0.0104196108877658,0.2176131211966276,./d3rlpy_logs/fqe_./d3rlpy_logs/cql_training_continuous_Pos./configs/cql_cont_generated/cql_config_51.yaml_20241222095831/_20241223110840
+300,-0.0228060092777013,0.2131425157189369,./d3rlpy_logs/fqe_./d3rlpy_logs/cql_training_continuous_Pos./configs/cql_cont_generated/cql_config_51.yaml_20241222095831/_20241223110840
+300,-0.0311264730989933,0.2187979184091091,./d3rlpy_logs/fqe_./d3rlpy_logs/cql_training_continuous_Pos./configs/cql_cont_generated/cql_config_313.yaml_20241222143135/_20241223110508

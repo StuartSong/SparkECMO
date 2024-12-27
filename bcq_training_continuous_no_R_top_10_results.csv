@@ -1,0 +1,11 @@
+Index,Init Value,Loss,Path
+200,-0.4220257401466369,0.2086205252259969,./d3rlpy_logs/fqe_./d3rlpy_logs/bcq_training_continuous_no_R./configs/bcq_cont_generated/bcq_config_64.yaml_20241222184139/_20241223125425
+200,-0.4298449158668518,0.210704678222537,./d3rlpy_logs/fqe_./d3rlpy_logs/bcq_training_continuous_no_R./configs/bcq_cont_generated/bcq_config_38.yaml_20241222182136/_20241223121459
+200,-0.4304712116718292,0.2045182130485773,./d3rlpy_logs/fqe_./d3rlpy_logs/bcq_training_continuous_no_R./configs/bcq_cont_generated/bcq_config_64.yaml_20241222184139/_20241223125652
+200,-0.4320664405822754,0.2199919863045215,./d3rlpy_logs/fqe_./d3rlpy_logs/bcq_training_continuous_no_R./configs/bcq_cont_generated/bcq_config_196.yaml_20241222201033/_20241223121227
+200,-0.4342899322509765,0.2077238570898771,./d3rlpy_logs/fqe_./d3rlpy_logs/bcq_training_continuous_no_R./configs/bcq_cont_generated/bcq_config_122.yaml_20241222191439/_20241223123126
+200,-0.4355552792549133,0.2116116856783628,./d3rlpy_logs/fqe_./d3rlpy_logs/bcq_training_continuous_no_R./configs/bcq_cont_generated/bcq_config_224.yaml_20241222203041/_20241223122054
+200,-0.4430014193058014,0.2102119881659746,./d3rlpy_logs/fqe_./d3rlpy_logs/bcq_training_continuous_no_R./configs/bcq_cont_generated/bcq_config_26.yaml_20241222180438/_20241223124149
+200,-0.4463082551956177,0.2064625009149313,./d3rlpy_logs/fqe_./d3rlpy_logs/bcq_training_continuous_no_R./configs/bcq_cont_generated/bcq_config_104.yaml_20241222190609/_20241223131855
+200,-0.4479833245277405,0.2103312661498785,./d3rlpy_logs/fqe_./d3rlpy_logs/bcq_training_continuous_no_R./configs/bcq_cont_generated/bcq_config_224.yaml_20241222203041/_20241223124535
+200,-0.4498945772647857,0.216415396630764,./d3rlpy_logs/fqe_./d3rlpy_logs/bcq_training_continuous_no_R./configs/bcq_cont_generated/bcq_config_75.yaml_20241222184539/_20241223130036

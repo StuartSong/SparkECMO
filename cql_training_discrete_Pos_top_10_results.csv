@@ -1,0 +1,11 @@
+Index,Init Value,Loss,Path
+1700,0.4019965529441833,0.0053903909469954,./d3rlpy_logs/fqe_./d3rlpy_logs/cql_training_discrete_Pos./configs/cql_disc_generated/cql_config_23.yaml_20241226015823/_20241226113102
+2000,0.3991110026836395,0.0053027819632552,./d3rlpy_logs/fqe_./d3rlpy_logs/cql_training_discrete_Pos./configs/cql_disc_generated/cql_config_23.yaml_20241226015823/_20241226113102
+1900,0.3977027535438537,0.0049938999954611,./d3rlpy_logs/fqe_./d3rlpy_logs/cql_training_discrete_Pos./configs/cql_disc_generated/cql_config_23.yaml_20241226015823/_20241226113102
+1800,0.395021378993988,0.0056940978206694,./d3rlpy_logs/fqe_./d3rlpy_logs/cql_training_discrete_Pos./configs/cql_disc_generated/cql_config_23.yaml_20241226015823/_20241226113102
+1600,0.3910513520240783,0.0056187262199819,./d3rlpy_logs/fqe_./d3rlpy_logs/cql_training_discrete_Pos./configs/cql_disc_generated/cql_config_23.yaml_20241226015823/_20241226113102
+1300,0.3891724050045013,0.0069445832632482,./d3rlpy_logs/fqe_./d3rlpy_logs/cql_training_discrete_Pos./configs/cql_disc_generated/cql_config_23.yaml_20241226015823/_20241226113102
+1500,0.3777211606502533,0.006235328731127,./d3rlpy_logs/fqe_./d3rlpy_logs/cql_training_discrete_Pos./configs/cql_disc_generated/cql_config_23.yaml_20241226015823/_20241226113102
+1400,0.3771660625934601,0.0065405901079066,./d3rlpy_logs/fqe_./d3rlpy_logs/cql_training_discrete_Pos./configs/cql_disc_generated/cql_config_23.yaml_20241226015823/_20241226113102
+1200,0.3743962943553924,0.0072260368196293,./d3rlpy_logs/fqe_./d3rlpy_logs/cql_training_discrete_Pos./configs/cql_disc_generated/cql_config_23.yaml_20241226015823/_20241226113102
+1100,0.3732218146324157,0.0076295874500647,./d3rlpy_logs/fqe_./d3rlpy_logs/cql_training_discrete_Pos./configs/cql_disc_generated/cql_config_23.yaml_20241226015823/_20241226113102
