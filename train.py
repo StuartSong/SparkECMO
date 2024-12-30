@@ -146,6 +146,7 @@ def main(args):
         # Training configuration
         cql.fit(
             dataset=dataset,
+            n_steps_per_epoch=1000,
             n_steps=100000,
             experiment_name="cql_training_" + args.data_type + args.config
         )
